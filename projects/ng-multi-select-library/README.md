@@ -1,24 +1,108 @@
 # NgMultiSelect
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.13.
+# [Demo](https://ngmultiselect.000webhostapp.com)
 
-## Code scaffolding
+![demo](https://i.ibb.co/HgG3Tp1/screenshot.png)
 
-Run `ng generate component component-name --project ng-multi-select` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-multi-select`.
-> Note: Don't forget to add `--project ng-multi-select` or else it will be added to the default project in your `angular.json` file. 
 
-## Build
+## Features
 
-Run `ng build ng-multi-select` to build the project. The build artifacts will be stored in the `dist/` directory.
+- dropdown with single/multiple selction option
+- bind to any data source
+- search item with custom placeholder text
 
-## Publishing
+### Installation
 
-After building your library with `ng build ng-multi-select`, go to the dist folder `cd dist/ng-multi-select` and run `npm publish`.
+```
+npm i ng-multi-select-library
+```
 
-## Running unit tests
+And then include it in your module :
 
-Run `ng test ng-multi-select` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```ts
+import { NgMultiSelectModule } from 'ng-multi-select-library';
+// ...
 
-## Further help
+@NgModule({
+  imports: [
+    NgMultiSelectModule.forRoot()
+    // ...
+  ]
+  // ...
+})
+export class AppModule {}
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Usage
+
+```ts
+import { Component, OnInit } from '@angular/core';
+
+export class AppComponent implements OnInit {
+
+  selected = [];
+
+  data = [
+    {
+      name: "Steve Jobs",
+      id: "1"
+    },
+    {
+      name: "Bill Gates",
+      id: "2"
+    },
+    {
+      name: "Mark Zuckerberg",
+      id: "3"
+    },
+    {
+      name: "Jack Dorsey",
+      id: "4"
+    }
+
+  ]
+
+
+  onChangeInArray(data) {
+    console.log("app component data ", data);
+  }
+}
+```
+
+```html
+<lib-ng-multiselect
+  [options]="data" optionLabel="name"
+  optionValue="id"
+  (onChange)="onChangeInArray($event)"
+  [filter]="true"
+  filterBy="name"
+  [(ngModel)]="selected">
+</lib-ng-multiselect>
+```
+
+```html
+<lib-ng-multiselect
+  [options]="data" optionLabel="name"
+  optionValue="id"
+  (onChange)="onChangeInArray($event)"
+  [filter]="true"
+  filterBy="name"
+  formControlName="control">
+</lib-ng-multiselect>
+```
+
+
+### Settings
+
+| Name                        | Type       | Description                                                                                                                                                                                                                                                                                                                                              | Default Value       |
+| :----------------------------- | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------ |
+| options                | Array    | An array of objects to display as the available options.                                                                                                                                                                                                                                                     | [ ]              |
+| optionLabel                    | String     | Name of the label field of an option to display in dropdown.                                                                                                                                                                                                                                                   |            |
+| optionValue                       | String    | Name of the value field to bind which would be considered as the selected value.                                            | false           |
+| filter                       | boolean    | When this option is set to true, then the filter input would be visible in the dropdown. |            |
+| filterBy                       | boolean    | When filtering is enabled, filterBy option will decide which field or fields to lookup while the user is searching.
+
+### Callback Methods
+
+- `onChange` - Return the selected items when an item is checked or unchecked.
+  Example : (onChange)="onChangeInArray($event)"
