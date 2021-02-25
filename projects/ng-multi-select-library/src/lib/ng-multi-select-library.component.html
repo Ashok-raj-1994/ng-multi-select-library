@@ -1,0 +1,41 @@
+<div>
+    <div class="input-section" (click)="showOptions=!showOptions">
+        <div class="label-section hand-icon">
+            <ng-container *ngFor="let item of selectedItems;let i= index">
+                <span *ngIf="i <2">
+                    {{item.text}}
+                    <span *ngIf="selectedItems.length> 1 && i === 0">
+                        ,
+                    </span>
+
+                </span>
+
+            </ng-container>
+            <span *ngIf="selectedItems.length> 1">
+                ...
+            </span>
+        </div>
+        <div class="close-icon">
+            <span *ngIf="showOptions" class="hand-icon">▲</span>
+            <span *ngIf="!showOptions" class="hand-icon">▼</span>
+
+        </div>
+    </div>
+    <div *ngIf="showOptions" class="option-section">
+        <input *ngIf="filter && filterBy" (keyup)="filterRecords()"
+            [(ngModel)]="searchString" type="text" class="input-box">
+        <div class="scroll-section">
+            <div class="options hand-icon" *ngFor="let d of selectData;let i=
+                index">
+                <span>
+                    <input [id]='i' type="checkbox" class="hand-icon"
+                        (change)="checkBoxSelected()"
+                        [(ngModel)]="d.selected">
+                </span>
+                <span class="select-option hand-icon" (click)="chooseOption(i)">
+                    {{d[optionLabel]}}</span>
+            </div>
+        </div>
+
+    </div>
+</div>

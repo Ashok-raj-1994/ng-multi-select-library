@@ -1,0 +1,55 @@
+.hand-icon {
+    cursor: pointer;
+}
+
+.options {
+    border: 1px solid #817070;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.input-section {
+    display: flex;
+    border: 1px solid #898888;
+    width: 230px;
+    border-radius: 4px;
+}
+
+.input-box {
+    display: block;
+    width: 185px;
+    padding: 0px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.label-section {
+    padding: 0px 22px;
+    border-radius: 4px;
+    width: 250px;
+}
+
+.option-section {
+    width: 208px;
+    background-color: #e8e6e6;
+    padding: 5px 0px;
+    padding-left: 10px;
+    padding-right: 11px;
+    input {
+        margin-bottom: 5px;
+    }
+}
+
+.close-icon {
+    margin-right: 7px;
+}
+
+.scroll-section {
+    max-height: 200px;
+    overflow-y: scroll;
+}
